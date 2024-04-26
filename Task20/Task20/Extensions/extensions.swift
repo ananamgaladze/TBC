@@ -26,7 +26,6 @@ extension UILabel {
         label.text = text
         label.font = UIFont(name: "SFPro-Regular", size: 14)
         label.textAlignment = .right
-//        label.lineBreakMode = .byClipping
         label.numberOfLines = 0
         label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,25 +47,67 @@ extension UIView {
         return lineView
     }
 }
+//
+//extension UIButton {
+//    static func circularButton(withImage image: UIImage?) -> UIButton {
+//        let button = UIButton(type: .custom)
+//        button.layer.cornerRadius = 25
+//        button.layer.borderWidth = 1
+//        button.layer.borderColor = UIColor.black.cgColor
+//        button.imageView?.contentMode = .scaleAspectFit
+//        button.clipsToBounds = true 
+//        let resizedImage =  image?.resized(toSize: CGSize(width: 30, height: 30))
+//        button.setImage(resizedImage, for: .normal)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            button.widthAnchor.constraint(equalToConstant: 50),
+//            button.heightAnchor.constraint(equalToConstant: 50),
+//        ])
+//        return button
+//    }
+//}
 
 extension UIButton {
     static func circularButton(withImage image: UIImage?) -> UIButton {
         let button = UIButton(type: .custom)
         button.layer.cornerRadius = 25
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.black.cgColor
         button.imageView?.contentMode = .scaleAspectFit
-        button.clipsToBounds = true 
+        button.clipsToBounds = true
         let resizedImage =  image?.resized(toSize: CGSize(width: 30, height: 30))
         button.setImage(resizedImage, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Set border color based on current trait collection
+        button.updateBorderColor()
+        
         NSLayoutConstraint.activate([
             button.widthAnchor.constraint(equalToConstant: 50),
             button.heightAnchor.constraint(equalToConstant: 50),
         ])
+        
+        // Register for trait changes
+        button.registerForTraitChanges()
+        
         return button
     }
+    // მოკლედ აქ უნდა მივბრუნდეთ ნილდება რაღაც და რეალურად პირდაპირ მოუდი რო შევცალო ხან ცვლის ხან არა
+    func updateBorderColor() {
+        let interfaceStyle = traitCollection.userInterfaceStyle
+        if interfaceStyle == .dark {
+            layer.borderColor = UIColor.white.cgColor
+        } else {
+            layer.borderColor = UIColor.black.cgColor
+        }
+    }
+    
+    func registerForTraitChanges() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("traitCollectionDidChangeNotification"), object: nil, queue: nil) { [weak self] _ in
+            self?.updateBorderColor()
+        }
+    }
 }
+
 
 
 extension UIImage {
@@ -77,3 +118,5 @@ extension UIImage {
         return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
+
+

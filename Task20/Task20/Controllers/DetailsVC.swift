@@ -12,7 +12,6 @@ class DetailsVC: UIViewController {
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.backgroundColor = .systemBackground
-        //        view.backgroundColor = .purple
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -20,28 +19,10 @@ class DetailsVC: UIViewController {
     private let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
-        //        view.backgroundColor = .yellow
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    private let backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = .gray
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    lazy var countryNameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Georgia"
-        label.textColor = .label
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
+        
     lazy var flagImageContainer: UIView = {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +30,7 @@ class DetailsVC: UIViewController {
         containerView.layer.shadowOpacity = 0.5
         containerView.layer.shadowOffset = CGSize(width: 0, height: 4)
         containerView.layer.shadowRadius = 4
-        containerView.layer.cornerRadius = 30 
+        containerView.layer.cornerRadius = 30
         return containerView
     }()
     
@@ -111,9 +92,7 @@ class DetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
         setupUI()
-        configureBackButton()
         changedData()
         configureStreetMapButton()
         configureGoogleMapButton()
@@ -124,8 +103,6 @@ class DetailsVC: UIViewController {
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
-        self.view.addSubview(backButton)
-        self.view.addSubview(countryNameLabel)
         self.view.addSubview(flagImageContainer)
         flagImageContainer.addSubview(flagImage)
         self.view.addSubview(countriesLabel)
@@ -165,16 +142,7 @@ class DetailsVC: UIViewController {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor,constant: -20),
             contentView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor, multiplier: 1.3),
             
-            backButton.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 5),
-            backButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
-            backButton.heightAnchor.constraint(equalToConstant: 15),
-            backButton.widthAnchor.constraint(equalToConstant: 11),
-            
-            countryNameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 5),
-            countryNameLabel.heightAnchor.constraint(equalToConstant: 20),
-            countryNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            
-            flagImageContainer.topAnchor.constraint(equalTo: countryNameLabel.bottomAnchor, constant: 29),
+            flagImageContainer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             flagImageContainer.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             flagImageContainer.widthAnchor.constraint(equalToConstant: 343),
             flagImageContainer.heightAnchor.constraint(equalToConstant: 228),
@@ -247,17 +215,6 @@ class DetailsVC: UIViewController {
         
     }
     
-    func configureBackButton() {
-        backButton.addAction(UIAction(handler: { _ in
-            self.backButtonTapped()
-        }), for: .touchUpInside)
-    }
-    
-    func backButtonTapped() {
-        let mainVC = MainVC()
-        navigationController?.pushViewController(mainVC, animated: false)
-    }
-    
     
     func configureStreetMapButton() {
         streetMapButton.addAction(UIAction(handler: { _ in
@@ -289,7 +246,7 @@ class DetailsVC: UIViewController {
     
     private func changedData() {
         guard let selectedCountryItem = selectedCountry else { return }
-        countryNameLabel.text = selectedCountryItem.name?.common
+//        countryNameLabel.text = selectedCountryItem.name?.common
         flagInfoTextView.text = selectedCountryItem.flags?.alt ?? "ინფორმაციის უგარეშოდ"
         nativeName.text = selectedCountryItem.name?.common
         capital.text = selectedCountryItem.capital?.first ?? ""
@@ -322,7 +279,3 @@ class DetailsVC: UIViewController {
 
 
 
-
-#Preview{
-    DetailsVC()
-}

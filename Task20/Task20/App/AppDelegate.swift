@@ -5,7 +5,6 @@
 //  Created by ana namgaladze on 21.04.24.
 //
 
-import UIKit
 
 import UIKit
 @main
