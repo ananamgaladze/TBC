@@ -51,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				75C513E02BD9847900AC68B7 /* Task21 */,
+				75E61EDD2BDADC53002E1898 /* extensions */,
 				75C513DF2BD9847900AC68B7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -155,7 +156,6 @@
 		75E61EE02BDB2656002E1898 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				75E61EDD2BDADC53002E1898 /* extensions */,
 				75E61EDB2BDAA4DD002E1898 /* Networking.swift */,
 			);
 			path = Networking;
