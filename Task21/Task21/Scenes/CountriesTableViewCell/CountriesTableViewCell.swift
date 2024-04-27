@@ -14,7 +14,7 @@ class CountriesTableViewCell: UITableViewCell {
     // MARK: - UI Components
     lazy var rectangleView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 30
         view.layer.borderWidth = 1
         view.backgroundColor = .systemBackground

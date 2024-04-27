@@ -100,6 +100,7 @@ class DetailsVC: UIViewController {
         }
         viewModel = CountryDetailsModel(country: selectedCountry)
         setupUI()
+        constraints()
         changedData()
         configureStreetMapButton()
         configureGoogleMapButton()
@@ -135,7 +136,9 @@ class DetailsVC: UIViewController {
         self.view.addSubview(LinksLabel)
         self.view.addSubview(streetMapButton)
         self.view.addSubview(googleMapButton)
-        
+    }
+    
+    func constraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -218,6 +221,7 @@ class DetailsVC: UIViewController {
             googleMapButton.topAnchor.constraint(equalTo: LinksLabel.bottomAnchor, constant: 15),
             googleMapButton.leadingAnchor.constraint(equalTo: streetMapButton.trailingAnchor, constant: 87),
         ])
+        
         
     }
     

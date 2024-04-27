@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
         
-        let vc = CountriesViewController()
+        let vc = LogInViewController()
         let navigationController = UINavigationController(rootViewController: vc)
         window?.rootViewController = navigationController
         
