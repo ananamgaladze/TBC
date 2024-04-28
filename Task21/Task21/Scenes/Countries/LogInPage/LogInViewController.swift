@@ -8,51 +8,50 @@
 import UIKit
 
 class LogInViewController: UIViewController {
-    var logInView: LogInView
+    var logInView =  LogInView()
     let viewModel = LogInViewModel()
-
-    init() {
-        self.logInView = LogInView()
-        super.init(nibName: nil, bundle: nil)
-        self.logInView.delegate = self
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+    
+    
+    //MARK: ---c
     override func loadView() {
         view = logInView
     }
-
+    //MARK: ---Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate1 = self
+        buttonActionConfiguration()
+        addActionProfileImage()
+    }
+    //MARK: ---methods
+    func buttonActionConfiguration() {
         logInView.logInButton.addAction(UIAction(handler: { _ in
             self.logInButtonTapped()
         }), for: .touchUpInside)
     }
-
+    
     func logInButtonTapped() {
-        let countriesVC = CountriesViewController()
-        navigationController?.pushViewController(countriesVC, animated: true)
+        navigateToCountriesMainVC(username: logInView.usernameTextField.text, password: logInView.passwordTextField.text, repeatPassword: logInView.repeatPasswordTextField.text)
     }
-}
-
-extension LogInViewController: LogInViewDelegate {
-    func didTapProfilePictureButton() {
+    
+    func saveProfileImage(_ image: UIImage) {
+        if let imageData = image.jpegData(compressionQuality: 1.0) {
+            UserDefaults.standard.set(imageData, forKey: "profileImage")
+        }
+    }
+    
+    func addImage() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true)
+    }
+    
+    func addActionProfileImage() {
+        logInView.profilePictureButton.addAction(UIAction(handler: { _ in
+            self.addImage()
+        }), for: .touchUpInside)
     }
 }
 
-extension LogInViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[.originalImage] as? UIImage {
-            logInView.profilePictureButton.setImage(pickedImage, for: .normal)
-            viewModel.saveProfileImage(pickedImage)
-        }
-        dismiss(animated: true, completion: nil)
-    }
-}

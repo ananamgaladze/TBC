@@ -5,7 +5,7 @@
 //  Created by ana namgaladze on 25.04.24.
 //
 
-import UIKit
+import Foundation
 
 protocol CountriesViewModelDelegate: AnyObject {
     func countriesFetched(_ countries: [Country])
@@ -13,8 +13,7 @@ protocol CountriesViewModelDelegate: AnyObject {
 }
 
 
-
-class CountriesViewModel {
+final class CountriesViewModel {
     weak var delegate: CountriesViewModelDelegate?
     private var countriesArray: [Country] = []
     

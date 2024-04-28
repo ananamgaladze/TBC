@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		753E47482BDCCE6D005707B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753E47472BDCCE6D005707B8 /* Security.framework */; };
 		755CED042BDC77C700737907 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755CED032BDC77C700737907 /* KeychainService.swift */; };
 		7593001C2BDC109300717D4F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7593001B2BDC109300717D4F /* LogInViewController.swift */; };
 		7593001E2BDC10D500717D4F /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7593001D2BDC10D500717D4F /* LogInViewModel.swift */; };
@@ -24,10 +23,11 @@
 		75E61EDC2BDAA4DD002E1898 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E61EDB2BDAA4DD002E1898 /* Networking.swift */; };
 		75E61EDF2BDADC62002E1898 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E61EDE2BDADC62002E1898 /* extensions.swift */; };
 		75E61EE22BDB4A85002E1898 /* CountryDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E61EE12BDB4A85002E1898 /* CountryDetailsModel.swift */; };
+		75F822132BDEB644005D37B0 /* CountriesVCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F822122BDEB644005D37B0 /* CountriesVCExtensions.swift */; };
+		75F822152BDEBEBF005D37B0 /* LogInVCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F822142BDEBEBF005D37B0 /* LogInVCExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		753E47472BDCCE6D005707B8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		755CED032BDC77C700737907 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		7593001B2BDC109300717D4F /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		7593001D2BDC10D500717D4F /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
@@ -46,6 +46,8 @@
 		75E61EDB2BDAA4DD002E1898 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		75E61EDE2BDADC62002E1898 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		75E61EE12BDB4A85002E1898 /* CountryDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsModel.swift; sourceTree = "<group>"; };
+		75F822122BDEB644005D37B0 /* CountriesVCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesVCExtensions.swift; sourceTree = "<group>"; };
+		75F822142BDEBEBF005D37B0 /* LogInVCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVCExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,21 +55,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				753E47482BDCCE6D005707B8 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		753E47462BDCCE6C005707B8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				753E47472BDCCE6D005707B8 /* Security.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		755CED022BDC77AD00737907 /* keyChain */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +75,7 @@
 				7593001F2BDC11C600717D4F /* LogInView.swift */,
 				7593001B2BDC109300717D4F /* LogInViewController.swift */,
 				7593001D2BDC10D500717D4F /* LogInViewModel.swift */,
+				75F822142BDEBEBF005D37B0 /* LogInVCExtensions.swift */,
 			);
 			path = LogInPage;
 			sourceTree = "<group>";
@@ -91,7 +85,6 @@
 			children = (
 				75C513E02BD9847900AC68B7 /* Task21 */,
 				75C513DF2BD9847900AC68B7 /* Products */,
-				753E47462BDCCE6C005707B8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,12 +101,13 @@
 			children = (
 				75E61EBE2BDA4B4D002E1898 /* App */,
 				75E61ECA2BDA97CB002E1898 /* Scenes */,
+				75E61ED32BDAA21F002E1898 /* CountriesTableViewCell */,
 				75E61EC92BDA97BF002E1898 /* Model */,
+				75E61EE02BDB2656002E1898 /* Networking */,
+				75E61EDD2BDADC53002E1898 /* UIcomponentsExtensions */,
+				755CED022BDC77AD00737907 /* keyChain */,
 				75E61EBC2BDA49F4002E1898 /* Resources */,
 				75E61EC22BDA61CD002E1898 /* Font */,
-				75E61EE02BDB2656002E1898 /* Networking */,
-				75E61EDD2BDADC53002E1898 /* extensions */,
-				755CED022BDC77AD00737907 /* keyChain */,
 			);
 			path = Task21;
 			sourceTree = "<group>";
@@ -156,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				75E61ED22BDAA200002E1898 /* Countries */,
-				75E61ED32BDAA21F002E1898 /* CountriesTableViewCell */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -165,8 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				7593001A2BDC0FEA00717D4F /* LogInPage */,
-				75E61EE32BDB5FFB002E1898 /* CountriesVC */,
-				75E61ED82BDAA35F002E1898 /* CountryDetailsVC */,
+				75E61EE32BDB5FFB002E1898 /* CountriesMain */,
+				75E61ED82BDAA35F002E1898 /* CountryDetails */,
 			);
 			path = Countries;
 			sourceTree = "<group>";
@@ -179,21 +172,21 @@
 			path = CountriesTableViewCell;
 			sourceTree = "<group>";
 		};
-		75E61ED82BDAA35F002E1898 /* CountryDetailsVC */ = {
+		75E61ED82BDAA35F002E1898 /* CountryDetails */ = {
 			isa = PBXGroup;
 			children = (
 				75E61ED92BDAA392002E1898 /* CountryDetailsViewController.swift */,
 				75E61EE12BDB4A85002E1898 /* CountryDetailsModel.swift */,
 			);
-			path = CountryDetailsVC;
+			path = CountryDetails;
 			sourceTree = "<group>";
 		};
-		75E61EDD2BDADC53002E1898 /* extensions */ = {
+		75E61EDD2BDADC53002E1898 /* UIcomponentsExtensions */ = {
 			isa = PBXGroup;
 			children = (
 				75E61EDE2BDADC62002E1898 /* extensions.swift */,
 			);
-			path = extensions;
+			path = UIcomponentsExtensions;
 			sourceTree = "<group>";
 		};
 		75E61EE02BDB2656002E1898 /* Networking */ = {
@@ -204,13 +197,14 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		75E61EE32BDB5FFB002E1898 /* CountriesVC */ = {
+		75E61EE32BDB5FFB002E1898 /* CountriesMain */ = {
 			isa = PBXGroup;
 			children = (
 				75E61ED42BDAA2AD002E1898 /* CountriesViewController.swift */,
 				75E61ED62BDAA2D0002E1898 /* CountriesViewModel.swift */,
+				75F822122BDEB644005D37B0 /* CountriesVCExtensions.swift */,
 			);
-			path = CountriesVC;
+			path = CountriesMain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,12 +281,14 @@
 				75E61EE22BDB4A85002E1898 /* CountryDetailsModel.swift in Sources */,
 				75E61EDA2BDAA392002E1898 /* CountryDetailsViewController.swift in Sources */,
 				7593001E2BDC10D500717D4F /* LogInViewModel.swift in Sources */,
+				75F822152BDEBEBF005D37B0 /* LogInVCExtensions.swift in Sources */,
 				755CED042BDC77C700737907 /* KeychainService.swift in Sources */,
 				75E61ECF2BDA9A5E002E1898 /* Country.swift in Sources */,
 				75C513E22BD9847900AC68B7 /* AppDelegate.swift in Sources */,
 				75E61EDF2BDADC62002E1898 /* extensions.swift in Sources */,
 				759300202BDC11C600717D4F /* LogInView.swift in Sources */,
 				75E61ED12BDA9B30002E1898 /* CountriesTableViewCell.swift in Sources */,
+				75F822132BDEB644005D37B0 /* CountriesVCExtensions.swift in Sources */,
 				75E61ED72BDAA2D0002E1898 /* CountriesViewModel.swift in Sources */,
 				75E61ED52BDAA2AD002E1898 /* CountriesViewController.swift in Sources */,
 				7593001C2BDC109300717D4F /* LogInViewController.swift in Sources */,

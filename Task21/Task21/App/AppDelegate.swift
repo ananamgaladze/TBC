@@ -6,8 +6,6 @@
 //
 
 import UIKit
-
-import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -18,13 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
+
+        if UserDefaults.standard.bool(forKey: "isFirstLogin") == false {
+            let vc  = LogInViewController()
+            let navigationController = UINavigationController(rootViewController: vc)
+            window?.rootViewController = navigationController
+        } else {
+            let vc = CountriesViewController()
+            let navigationController = UINavigationController(rootViewController: vc)
+            window?.rootViewController = navigationController
+        }
         
-        let vc = LogInViewController()
-        let navigationController = UINavigationController(rootViewController: vc)
-        window?.rootViewController = navigationController
+        
+
         
         return true
     }
     
 }
+
+
+
 

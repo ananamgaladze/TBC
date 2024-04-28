@@ -5,7 +5,7 @@
 //  Created by ana namgaladze on 26.04.24.
 //
 
-import UIKit
+import Foundation
 
 
 class CountryDetailsModel {
@@ -15,8 +15,6 @@ class CountryDetailsModel {
     var flagInfoTextView: String?
     var capital: String?
     var currency: String?
-    var googleMapsLink: String?
-    var openStreetMapsLink: String?
     var spelling: String?
     var neighbors: String?
     
@@ -33,25 +31,8 @@ class CountryDetailsModel {
             }
         } 
         self.neighbors = country.borders?.joined(separator: ", ")
-        
-        self.googleMapsLink = country.maps?.googleMaps
-        self.openStreetMapsLink = country.maps?.openStreetMaps
     }
     
-    // MARK: - Button Actions
-    
-    func googleMapButtonTapped() {
-        if let googleMapsLink = googleMapsLink, let url = URL(string: googleMapsLink) {
-            UIApplication.shared.open(url)
-        }
-        
-    }
-    
-    func streetMapButtonTapped() {
-        if let openStreetMapsLink = openStreetMapsLink, let url = URL(string: openStreetMapsLink) {
-            UIApplication.shared.open(url)
-            
-        }
-    }
+  
     
 }
