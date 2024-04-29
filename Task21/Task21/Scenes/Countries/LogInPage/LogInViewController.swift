@@ -10,12 +10,13 @@ import UIKit
 class LogInViewController: UIViewController {
     var logInView =  LogInView()
     let viewModel = LogInViewModel()
-    
+    let fileManager = FileManager.default
     
     //MARK: ---c
     override func loadView() {
         view = logInView
     }
+    
     //MARK: ---Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class LogInViewController: UIViewController {
         buttonActionConfiguration()
         addActionProfileImage()
     }
+    
     //MARK: ---methods
     func buttonActionConfiguration() {
         logInView.logInButton.addAction(UIAction(handler: { _ in
@@ -36,7 +38,13 @@ class LogInViewController: UIViewController {
     
     func saveProfileImage(_ image: UIImage) {
         if let imageData = image.jpegData(compressionQuality: 1.0) {
-            UserDefaults.standard.set(imageData, forKey: "profileImage")
+            let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let fileURL = documentsDirectory.appendingPathComponent("profileImage.jpg")
+            do {
+                try imageData.write(to: fileURL)
+            } catch {
+                print("Error saving image: \(error.localizedDescription)")
+            }
         }
     }
     
@@ -52,6 +60,22 @@ class LogInViewController: UIViewController {
         logInView.profilePictureButton.addAction(UIAction(handler: { _ in
             self.addImage()
         }), for: .touchUpInside)
+    }
+    
+    func checkProfileImageExists() -> Bool {
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsDirectory.appendingPathComponent("profileImage.jpg")
+        return fileManager.fileExists(atPath: fileURL.path)
+    }
+    
+
+    func getProfileImage() -> UIImage? {
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsDirectory.appendingPathComponent("profileImage.jpg")
+        if let imageData = try? Data(contentsOf: fileURL), let image = UIImage(data: imageData) {
+            return image
+        }
+        return nil
     }
 }
 

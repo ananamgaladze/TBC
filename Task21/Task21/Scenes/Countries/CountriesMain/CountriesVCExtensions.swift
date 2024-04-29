@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: ---extension: CountriesViewModelDelegate
+// MARK: --- CountriesViewModelDelegate
 extension CountriesViewController: CountriesViewModelDelegate {
     
     func countriesFetched(_ countries: [Country]) {
@@ -31,7 +31,7 @@ extension CountriesViewController: CountriesViewModelDelegate {
     }
 }
 
-//MARK: ---extension: UITableViewDataSource
+//MARK: --- UITableViewDataSource
 extension CountriesViewController:  UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         searchController.isActive ? filteredCountriesArray.count : countriesArray.count

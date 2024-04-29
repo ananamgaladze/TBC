@@ -18,7 +18,7 @@ class CountryDetailsModel {
     var spelling: String?
     var neighbors: String?
     
-    // MARK: - Initialization
+    // MARK: - init
     init(country: Country) {
         self.flagImage = country.flags?.png
         self.nativeName = country.name?.common

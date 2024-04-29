@@ -26,10 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let navigationController = UINavigationController(rootViewController: vc)
             window?.rootViewController = navigationController
         }
-        
-        
-
-        
         return true
     }
     
