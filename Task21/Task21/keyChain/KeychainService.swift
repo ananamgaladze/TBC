@@ -5,56 +5,38 @@
 //  Created by ana namgaladze on 27.04.24.
 //
 
-import UIKit
-import Security
- 
+import Foundation
+
 class KeychainService {
- 
-    static func save(_ value: String, forKey key: String) -> Bool {
-        if let data = value.data(using: .utf8) {
-            let query: [String: Any] = [
-                kSecClass as String: kSecClassGenericPassword,
-                kSecAttrAccount as String: key,
-                kSecValueData as String: data
-            ]
- 
-            SecItemDelete(query as CFDictionary)
-            let status = SecItemAdd(query as CFDictionary, nil)
- 
-            return status == errSecSuccess
-        }
- 
-        return false
+    
+    enum KeyChainError: Error {
+        case sameItemFound
+        case unknown
     }
- 
-    static func retrieve(forKey key: String) -> String? {
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key,
-            kSecReturnData as String: kCFBooleanTrue!,
-            kSecMatchLimit as String: kSecMatchLimitOne
+    
+
+    func save(
+        account: String,
+        password: Data
+    ) throws {
+
+        let query: [String: AnyObject] = [
+            kSecClass as String         : kSecClassGenericPassword,
+            kSecAttrAccount as String   : account as AnyObject,
+            kSecValueData as String     : password as AnyObject,
         ]
- 
-        var item: CFTypeRef?
-        let status = SecItemCopyMatching(query as CFDictionary, &item)
- 
-        if status == errSecSuccess, let data = item as? Data {
-            return String(data: data, encoding: .utf8)
+        
+        let status = SecItemAdd(query as CFDictionary, nil)
+        
+        guard status != errSecDuplicateItem else {
+            throw KeyChainError.sameItemFound
         }
- 
-        return nil
-    }
- 
-    static func delete(forKey key: String) -> Bool {
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key
-        ]
- 
-        let status = SecItemDelete(query as CFDictionary)
- 
-        return status == errSecSuccess
+        
+        guard status == errSecSuccess else {
+            throw KeyChainError.unknown
+        }
+        
+        print("saved")
     }
     
 }
- 

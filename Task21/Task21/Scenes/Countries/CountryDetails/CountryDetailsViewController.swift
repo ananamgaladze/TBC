@@ -224,18 +224,32 @@ class DetailsVC: UIViewController {
         
         
     }
-    
     func configureStreetMapButton() {
-        streetMapButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.viewModel?.streetMapButtonTapped()
-        }), for: .touchUpInside)
-    }
-    
-    func configureGoogleMapButton() {
-        googleMapButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.viewModel?.googleMapButtonTapped()
-        }), for: .touchUpInside)
-    }
+           streetMapButton.addAction(UIAction(handler: { _ in
+               self.streetMapButtonTapped()
+           }), for: .touchUpInside)
+       }
+       
+       func streetMapButtonTapped() {
+           guard let selectedCountryItem = selectedCountry else { return }
+           if let url = URL(string: selectedCountryItem.maps?.openStreetMaps ?? "error") {
+               UIApplication.shared.open(url)
+           }
+       }
+       
+       func configureGoogleMapButton() {
+           googleMapButton.addAction(UIAction(handler: {_ in
+               self.googleMapButtonTapped()
+           }), for: .touchUpInside)
+       }
+       
+       func googleMapButtonTapped() {
+           guard let selectedCountryItem = selectedCountry else { return }
+           if let url = URL(string: selectedCountryItem.maps?.googleMaps ?? "error") {
+               UIApplication.shared.open(url)
+               
+           }
+       }
     
     private func changedData() {
         guard let selectedCountryItem = selectedCountry else { return }

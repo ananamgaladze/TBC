@@ -21,11 +21,11 @@ class LogInView: UIView {
         return button
     }()
     
-    let userNameLabel = UILabel.customLabel(text: "მომხმარებლის სახელი")
+    let usernameLabel = UILabel.customLabel(text: "მომხმარებლის სახელი")
     let passwordLabel = UILabel.customLabel(text: "პაროლი")
     let repeatPasswordLabel = UILabel.customLabel(text: "გაიმეორეთ პაროლი")
     
-    let userNameTextField = UITextField.CustomTextField(withPlaceholder: "შეიყვანეთ მომხმარებლის სახელი")
+    let usernameTextField = UITextField.CustomTextField(withPlaceholder: "შეიყვანეთ მომხმარებლის სახელი")
     let passwordTextField = UITextField.CustomTextField(withPlaceholder: "შეიყვანეთ პაროლი", isSecure: true)
     let repeatPasswordTextField = UITextField.CustomTextField(withPlaceholder: "განმეორებით შეიყვანეთ პაროლი", isSecure: true)
     
@@ -62,8 +62,8 @@ class LogInView: UIView {
         addSubview(profilePictureButton)
         
         addSubview(nameStack)
-        nameStack.addArrangedSubview(userNameLabel)
-        nameStack.addArrangedSubview(userNameTextField)
+        nameStack.addArrangedSubview(usernameLabel)
+        nameStack.addArrangedSubview(usernameTextField)
         
         addSubview(passwordStack)
         passwordStack.addArrangedSubview(passwordLabel)
@@ -102,14 +102,14 @@ class LogInView: UIView {
         ])
     }
     
-    // MARK: ---button action
+// MARK: ---button action
     private func setupActions() {
         profilePictureButton.addAction(UIAction(handler: { [weak self] _ in
             self?.delegate?.didTapProfilePictureButton()
         }), for: .touchUpInside)
     }
 }
-
+//MARK: --- protocol LogInViewDelegate
 protocol LogInViewDelegate: AnyObject {
     func didTapProfilePictureButton()
 }

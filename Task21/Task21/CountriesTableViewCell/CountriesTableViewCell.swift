@@ -5,7 +5,6 @@
 //  Created by ana namgaladze on 25.04.24.
 //
 
-
 import UIKit
  
 class CountriesTableViewCell: UITableViewCell {
@@ -17,7 +16,6 @@ class CountriesTableViewCell: UITableViewCell {
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 30
         view.layer.borderWidth = 1
-        view.backgroundColor = .systemBackground
         view.layer.borderColor = UIColor.label.cgColor
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
